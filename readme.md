@@ -1,3 +1,7 @@
+# F4A - using gulp-watch and livereload
+
+Enables livereload on gulp-connect server and triggers it using gulp-watch. The advantage of gulp-watch over builtin watch is it will trigger on new file creation or file deletion.
+
 # Foundation for Apps Template
 
 This is the default template project for Foundation for Apps. It's powered by Node, Gulp, Angular, and libsass. It provides you with a basic template to get started with Angular and Foundation for Apps. If you're already an Angular developer, you may instead want to install the components into your own stack using Bower: `bower install foundation-apps`
