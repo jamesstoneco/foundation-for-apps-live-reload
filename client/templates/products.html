@@ -1,0 +1,56 @@
+---
+name: products
+url: /products
+title: Products
+articles:
+- "Lorem ipsum dolor"
+- Lorem ipsum dolor sit.
+- Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+- Lorem ipsum dolor sit? Really?
+products:
+    - sku         : BL394D
+      quantity    : 4
+      description : Basketball
+      price       : 450.00
+    - sku         : BL4438H
+      quantity    : 1
+      description : Super Hoop
+      price       : 2392.00
+    - sku         : BL4438H
+      quantity    : 1
+      description : Lorem ipsum
+      price       : 432.00
+    - sku         : BL4438H
+      quantity    : 1
+      description : Dolor sit
+      price       : 5321.00
+    - sku         : BL4438H
+      quantity    : 1
+      description : Adipisicing elit
+      price       : 751.00
+tax  : 251.42
+total: 4443.52
+
+---
+<h1>{{ vars.title }} </h1>
+<p class="lead">This page shows how you can use data in the yaml header and ng-repeat to create data driven prototypes.</p>
+
+<div class="hide">{{ vars }}</div>
+
+<hr>
+
+<div class="grid-block small-up-1 medium-up-3 large-up-4">
+	<div class="grid-block hingeInFromTop delay easeOut fast" ng-repeat="product in vars.products">
+		<div class="grid-content">
+			<div ng-class="{'primary': product.quantity > 1}" class="card">
+				<img src="http://placehold.it/640x280/0091B5/ffffff&text=Image+{{ $index + 1 }}" alt="">
+				<div class="card-divider">{{ product.description }}</div>
+				<div class="card-content">
+        <br>
+				<p class="text-center">qty: {{ product.quantity }}</p>
+				</div>
+				<div class="card-divider">${{ product.price | currency: 2 }}</div>
+			</div>
+		</div>
+	</div>
+</div>

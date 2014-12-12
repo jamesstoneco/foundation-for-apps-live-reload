@@ -1,0 +1,13 @@
+---
+name: blog
+url: /blog
+title: Blog
+posts:
+  - Hello World
+  - Foundation For Apps
+  - Pineapple Express
+---
+<h3> {{ vars.title }} </h3>
+<div ng-repeat="post in vars.posts">
+	<a ui-sref="post({id: $index })"> {{ post }} </a>
+</div>
