@@ -17,7 +17,8 @@ var gulp           = require('gulp'),
     connect        = require('gulp-connect'),
     path           = require('path'),
     modRewrite     = require('connect-modrewrite'),
-    dynamicRouting = require('./bower_components/foundation-apps/bin/gulp-dynamic-routing');
+    dynamicRouting = require('./bower_components/foundation-apps/bin/gulp-dynamic-routing'),
+    watch          = require('gulp-watch');
 
 // 2. SETTINGS VARIABLES
 // - - - - - - - - - - - - - - -
@@ -126,7 +127,6 @@ gulp.task('copy-pages', ['copy'], function() {
       root: 'client'
     }))
     .pipe(gulp.dest('./build/templates'))
-    // .pipe(connect.reload() )
   ;
 });
 
@@ -158,15 +158,27 @@ gulp.task('build', function() {
 
 // Default task: builds your app, starts a server, and recompiles assets when they change
 gulp.task('default', ['build', 'server:start'], function() {
-  // Watch Sass
-  gulp.watch(['./client/assets/scss/**/*', './scss/**/*'], ['sass', 'live-reload']);
 
-  // Watch JavaScript
-  gulp.watch(['./client/assets/js/**/*', './js/**/*'], ['uglify', 'live-reload']);
+  // // Watch Sass
+  watch(['./client/assets/scss/**/*', './scss/**/*'], function() {
+    gulp.start( ['sass', 'live-reload'] );
+  });
 
-  // Watch static files
-  gulp.watch(['./client/**/*.*', '!./client/templates/**/*.*', '!./client/assets/{scss,js}/**/*.*'], ['copy', 'live-reload']);
+  // // Watch JavaScript
+  watch(['./client/assets/js/**/*', './js/**/*'], function() {
+    gulp.start( ['uglify', 'live-reload'] );
+  });
+
+  // // Watch static files
+  watch(['./client/**/*.*', '!./client/templates/**/*.*', '!./client/assets/{scss,js}/**/*.*'], function() {
+    gulp.start( ['copy', 'live-reload'] );
+  });
 
   // Watch app templates
-  gulp.watch(['./client/templates/**/*.html'], ['copy-pages', 'live-reload']);
+  // watch(['./client/templates/**/*.html', './client/**/*.html'], function() {
+  watch(['./client/templates/**/*.html'], function() {
+      gulp.start( ['copy-pages', 'live-reload'] );
+  });
+
+
 });
