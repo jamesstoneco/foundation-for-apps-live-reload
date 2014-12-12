@@ -176,7 +176,7 @@ gulp.task('default', ['build', 'server:start'], function() {
 
   // Watch app templates
   // watch(['./client/templates/**/*.html', './client/**/*.html'], function() {
-  watch(['./client/templates/**/*.html'], function() {
+  watch(['./client/**/*.html', './client/templates/**/*.html'], function() {
       gulp.start( ['copy-pages', 'live-reload'] );
   });
 
