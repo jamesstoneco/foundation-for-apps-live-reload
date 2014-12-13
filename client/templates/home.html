@@ -5,7 +5,18 @@ url: /
 <h1>Welcome to Foundation for Apps!</h1>
 <p class="lead">This is version <strong>1.0.0 Matterhorn</strong>.</p>
 
+
 <div ng-controller="FireCtrl">
+
+    <div ng-show="user">
+      <p>Hello, {{ user.facebook.displayName }}</p>
+      <button ng-click="auth.$unauth()">Logout</button>
+    </div>
+    <div ng-hide="user">
+      <p>Welcome, please log in.</p>
+      <button ng-click="auth.$authWithOAuthPopup('twitter')">Login</button>
+    </div>
+
 
 
 	<div class="grid-block">
@@ -26,19 +37,19 @@ url: /
 	<!-- push a new message into the array -->
 	<form ng-submit="addMessage(newMessageText)">
 
-<div class="grid-content shrink">
-	<div class="small-12 grid-content">
-		<label>
-			Send a message
-			<span class="inline-label">
-			<input type="text" placeholder="Write your message..." ng-model="newMessageText">
-				<!-- <a href="#" class="button">Send &raquo;</a> -->
-						<a class="button" type="submit"><img zf-iconic="" data-src="/assets/img/iconic/comment-square.svg" class="iconic-sm"> Send</a>
-	
-			</span>
-		</label>
-	</div>
-</div>
+		<div class="grid-content shrink">
+			<div class="small-12 grid-content">
+					<label>
+						Send a message
+						<span class="inline-label">
+							<input type="text" placeholder="Write your message..." ng-model="newMessageText">
+							<!-- <a href="#" class="button">Send &raquo;</a> -->
+							<a ng-click="addMessage(newMessageText)" class="button" type="submit"><img zf-iconic="" data-src="/assets/img/iconic/comment-square.svg" class="iconic-sm"> Send</a>
+
+						</span>
+					</label>
+			</div>
+		</div>
 		<!-- <input name="message" ng-model="newMessageText" /> -->
 		<!-- <button type="submit" class="button">add message</button> -->
 		<!-- <button class="button small" type="submit"><img zf-iconic="" data-src="/assets/img/iconic/comment-square.svg" class="iconic-sm"> add message</button> -->

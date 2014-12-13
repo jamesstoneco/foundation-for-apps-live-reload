@@ -46,9 +46,20 @@ var app = angular.module('application', [
 
 // var app = angular.module("fireApp", ["firebase"]);
 
-app.controller("FireCtrl", function($scope, $firebase) {
+app.factory("Auth", ["$firebaseAuth", function($firebaseAuth) {
+  var ref = new Firebase("https://f4a-firebase.firebaseio.com/");
+  return $firebaseAuth(ref);
+}]);
+
+
+app.controller("FireCtrl", function($scope, $firebase, $firebaseAuth) {
   var ref = new Firebase("https://f4a-firebase.firebaseio.com/data");
   var sync = $firebase(ref);
+  var auth = $firebaseAuth(ref);
+  $scope.auth = auth;
+  $scope.user = $scope.auth.$getAuth();
+
+
 
   // download the data into a local object
   var syncObject = sync.$asObject();
