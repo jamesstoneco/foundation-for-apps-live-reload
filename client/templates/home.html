@@ -8,57 +8,41 @@ url: /
 
 <div ng-controller="FireCtrl">
 
-    <div ng-show="user">
-      <p>Hello, {{ user.facebook.displayName }}</p>
-      <button ng-click="auth.$unauth()">Logout</button>
-    </div>
-    <div ng-hide="user">
-      <p>Welcome, please log in.</p>
-      <button ng-click="auth.$authWithOAuthPopup('twitter')">Login</button>
-    </div>
-
+<!-- 	<div ng-show="user">
+		<p>Hello, {{ user.facebook.displayName }}</p>
+		<button ng-click="auth.$unauth()">Logout</button>
+	</div>
+	<div ng-hide="user">
+		<p>Welcome, please log in.</p>
+		<button ng-click="auth.$authWithOAuthPopup('twitter')">Login</button>
+	</div>
+ -->
 
 
 	<div class="grid-block">
-		<div class="small-12 grid-block grid-content" ng-repeat="message in messages">
-			<!-- exit a message -->
+		<div class="small-12 grid-block grid-content stagger hingeInFromTop easeOut" ng-repeat="message in messages">
 			<div class="card secondary">
 				<div class="card-divider">
-					<!-- <button class="button secondary small float-right" ng-click="messages.$remove(message)"><img zf-iconic="" data-src="/assets/img/iconic/circle-x.svg" class="iconic-sm"></button> -->
 					{{ message.text }}
 					<a class="float-right" ng-click="messages.$remove(message)"><img zf-iconic="" data-src="/assets/img/iconic/circle-x.svg" class="iconic-sm"></a>
 				</div>
 			</div>
-			<!-- <input ng-model="message.text" ng-change="messages.$save(message)" /> -->
-			<!-- delete message -->
-			<!-- <button class="button secondary small" ng-click="messages.$remove(message)"><img zf-iconic="" data-src="/assets/img/iconic/circle-x.svg" class="iconic-sm"></button> -->
 		</div>
 	</div>
-	<!-- push a new message into the array -->
 	<form ng-submit="addMessage(newMessageText)">
-
 		<div class="grid-content shrink">
 			<div class="small-12 grid-content">
-					<label>
-						Send a message
-						<span class="inline-label">
-							<input type="text" placeholder="Write your message..." ng-model="newMessageText">
-							<!-- <a href="#" class="button">Send &raquo;</a> -->
-							<a ng-click="addMessage(newMessageText)" class="button" type="submit"><img zf-iconic="" data-src="/assets/img/iconic/comment-square.svg" class="iconic-sm"> Send</a>
+				<label>
+					Send a message
+					<span class="inline-label">
+						<input type="text" placeholder="Write your message..." ng-model="newMessageText">
+						<!-- <a href="#" class="button">Send &raquo;</a> -->
+						<a ng-click="addMessage(newMessageText)" class="button" type="submit"><img zf-iconic="" data-src="/assets/img/iconic/comment-square.svg" class="iconic-sm"> Send</a>
 
-						</span>
-					</label>
+					</span>
+				</label>
 			</div>
 		</div>
-		<!-- <input name="message" ng-model="newMessageText" /> -->
-		<!-- <button type="submit" class="button">add message</button> -->
-		<!-- <button class="button small" type="submit"><img zf-iconic="" data-src="/assets/img/iconic/comment-square.svg" class="iconic-sm"> add message</button> -->
-
 	</form>
-
-	<!-- anything typed in here is magically saved to Firebase! -->
-	<!-- <input type="text" ng-model="data.text"/> -->
-	<!-- all changes from Firebase magically appear here! -->
-	<!-- <h1>You said: {{ data.text }}</h1> -->
 </div>
 
