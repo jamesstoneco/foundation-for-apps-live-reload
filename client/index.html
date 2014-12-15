@@ -7,30 +7,18 @@
   <link href="/assets/css/app.css" rel="stylesheet" type="text/css">
   <script src="/assets/js/foundation.js"></script>
   <script src="/assets/js/routes.js"></script>
-  <script src="/assets/js/app.js"></script>
-
+  <!-- Isn't found in build folder -->
+  <!-- // <script src="/assets/js/app.js"></script> -->
+  <link type="text/css" rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/foundicons/3.0.0/foundation-icons.css" />
+  <script src='https://cdn.firebase.com/js/client/2.0.4/firebase.js'></script>
   <!-- https://f4a-firebase.firebaseio.com/ -->
+  <!-- https://f4a-fire-signin.firebaseio.com/ -->
 </head>
 <body>
 
- <div class="grid-frame vertical">
-  <div class="grid-content shrink" style="padding: 0;">
-    <!-- not working below -->
-    <div ng-include="" src="templates/partials/menu.html"></div>
-    <ul class="primary condense menu-bar">
-      <li ui-sref="home"><a><strong>Foundation for Apps</strong></a></li>
-      <li><a ui-sref="home">Home</a></li>
-      <li><a ui-sref="about">About</a></li>
-      <li><a ui-sref="products">Products</a></li>
-      <li><a ui-sref="blog">Blog</a></li>
-    </ul>
+ <div ng-class="['ui-animation']" ui-view></div>
 
-  </div>
-  <div class="grid-content">
-    <div class="grid-container">
-      <div ng-class="['ui-animation']" ui-view></div>
-    </div>
-  </div>
-</div>
+
+
 </body>
 </html>

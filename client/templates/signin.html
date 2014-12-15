@@ -1,0 +1,44 @@
+---
+name: signin
+url: /
+---
+
+<div  ng-controller="FireCtrl">
+    <h1 class="text-center">Sign Up</h1>
+    <!-- <p class="lead">This is version <strong>1.0.0 Matterhorn</strong>.</p> -->
+    <style>
+      label span i{color: black;font-size: large;}
+    </style>
+    <label>
+      <span class="inline-label">
+      <span class="form-label"><i class="fi-torso"></i></span>
+      <input type="text" placeholder="Username">
+      
+    </label>
+    <label>
+      <span class="inline-label">
+      <span class="form-label"><i class="fi-lock"></i></span>
+      <input type="text" placeholder="Password">
+      
+    </label>
+    <a class="success button expand" href="#" ui-sref="messages">Sign Up</a>
+    <h2 class="text-center">or</h2>
+
+    <!-- I wanna make this this shake (motion class) when clicked... -->
+    <!-- if input information is invalid -->
+    <a class="button expand" href="#"  zf-toggle="signinsheet">Social Sign Up</a>
+    
+    <div zf-action-sheet id="signinsheet">
+       <div zf-as-content position="bottom" class="signinsheet">
+          <ul>
+             <!-- <li><a href="#" class="Google">Google</a></li> -->
+             <!-- <li><a href="#" class="Facebook">Facebook</a></li> -->
+             <li><a href="#" class="Twitter" ng-click="auth.$authWithOAuthPopup('twitter')">Twitter</a></li>
+             <!-- <li><a href="#" class="Github">Github</a></li> -->
+
+             <li ng-show="user"><a href="#" class="Github" ng-click="auth.$unauth()">Logout</a></li>
+          </ul>
+       </div>
+    </div>
+
+</div>

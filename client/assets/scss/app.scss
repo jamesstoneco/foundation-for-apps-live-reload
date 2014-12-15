@@ -1,2 +1,8 @@
 @import "settings";
 @import "foundation";
+
+// Reposition Action Sheet
+ #signinsheet{
+ 	position:relative;		 
+ 	left: 50%;
+ }
