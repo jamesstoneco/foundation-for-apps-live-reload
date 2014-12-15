@@ -1,64 +1,142 @@
 ---
 name: home
-url: /
+url: /home
 ---
-<h1>Welcome to Foundation for Apps!</h1>
-<p class="lead">This is version <strong>1.0.0 Matterhorn</strong>.</p>
+    <div class="grid-frame">
+
+      <div zf-panel position="left" id="sidebar" class="medium-grid-block collapse medium-3 large-3 vertical">
+        <div class="grid-content collapse shrink hide-for-medium">
+          <a href="" class="secondary button expand" zf-close>Close</a>
+        </div>
+        <div class="grid-content collapse shrink">
+          <img src="http://placehold.it/400x150&text=Logo">
+        </div>
+        <div class="grid-content">
+          
+          <section class="block-list">
+            <header>Rooms</header>
+            <ul>
+              <li>
+                <a  ui-sref="messages">
+                  Foundation Chat
+                  <span class="block-list-label">2</span>
+                </a>
+              </li>
+              <li>
+                <a href="#">
+                  Slam Book
+                  <span class="block-list-label">7</span>
+                </a>
+              </li>
+              <li>
+                <a class="success" href="#">
+                  LolCats
+                  <span class="block-list-label">2</span>
+                </a>
+              </li>
+            </ul>
+          </section>
+
+          <section class="block-list">
+            <header>People</header>
+            <ul>
+              <li>
+                <a href="#">
+                  Glen Coco
+                  <span class="block-list-label">2</span>
+                </a>
+              </li>
+              <li>
+                <a class="success" href="#">
+                  Guy Guyerson
+                  <span class="block-list-label">2</span>
+                </a>
+              </li>
+            </ul>
+          </section>
+        </div>
+    
+        <div class="grid-content collapse shrink avatar-section">
+            <img src="http://placehold.it/50x50">
+            Welcome user
+
+            <div ng-show="user">
+              <p>Hello, {{ user.facebook.displayName }}</p>
+              <button ng-click="auth.$unauth()">Logout</button>
+            </div>
+
+        </div>
+
+      </div>
+
+      <div class="grid-block collapse medium-9 large-9 vertical">
+        <div id="header" class="shrink collapse grid-content">
+          <ul class="menu-bar primary">
+            <li class="hide-for-medium"><a zf-open="sidebar" href="#"><i class="fi-list"></i></a></li>
+            <li><a ui-sref="home">zMail</a></li>
+            <li><a ui-sref="messages">Chat</a></li>
+            <!-- <li><a href="#" zf-toggle="signinsheet">Login</a></li> -->
+            <li><a ui-sref="signin">Sign Out</a></li>
+          </ul>
+        </div>
+        
+        <div class="grid-block">
+          <div class="grid-block small-12 medium-9 vertical">
+
+              <div zf-action-sheet id="signinsheet">
+                 <div zf-as-content position="bottom" class="signinsheet">
+                    <ul>
+                       <!-- <li><a href="#" class="Google">Google</a></li> -->
+                       <!-- <li><a href="#" class="Facebook">Facebook</a></li> -->
+                       <li><a href="#" class="Twitter" ng-click="auth.$authWithOAuthPopup('twitter')">Twitter</a></li>
+                       <!-- <li><a href="#" class="Github">Github</a></li> -->
+
+                       <li ng-show="user"><a href="#" class="Github" ng-click="auth.$unauth()">Logout</a></li>
+                    </ul>
+                 </div>
+              </div>
+
+            <!-- Add view -->
+            <div ui-view class="grid-content" >
+            </div>
+
+            <!--  -->
+            <div class="message-input grid-content collapse shrink" ng-controller="FireCtrl">
+                  <form ng-submit="addMessage(newMessageText)">
+                     <div class="grid-content shrink">
+                        <div class="small-12 grid-content">
+                              <label>
+                                 Send a message
+                                 <span class="inline-label">
+                                    <input type="text" placeholder="Write your message..." ng-model="newMessageText">
+                                    <a ng-click="addMessage(newMessageText)" class="button" type="submit"><img zf-iconic="" data-src="/assets/img/iconic/comment-square.svg" class="iconic-sm"> Send</a>
+                                 </span>
+                              </label>
+                        </div>
+                     </div>
+                  </form>
+              <!-- </span> -->
+            </div>
+            <!--  -->
+
+          </div>
+          <div class="grid-content medium-3 show-for-medium message-side-bar">
+            <!-- Current Chatroom -->
+            <section class="block-list">
 
 
-<div ng-controller="FireCtrl">
 
-    <div ng-show="user">
-      <p>Hello, {{ user.facebook.displayName }}</p>
-      <button ng-click="auth.$unauth()">Logout</button>
+              <header> <a ui-ref="home">In This Room</a></header>
+              <ul>
+                <li><a href="#">Cady Heron</a></li>
+                <li><a href="#">Kevin Gnapoor</a></li>
+                <li><a href="#">Trang Pak</a></li>
+                <li><a href="#">Coach Carr</a></li>
+                <li><a href="#">Regina George</a></li>
+              </ul>
+            </section>
+          </div>
+        </div>
+      </div>
+
     </div>
-    <div ng-hide="user">
-      <p>Welcome, please log in.</p>
-      <button ng-click="auth.$authWithOAuthPopup('twitter')">Login</button>
-    </div>
-
-
-
-	<div class="grid-block">
-		<div class="small-12 grid-block grid-content" ng-repeat="message in messages">
-			<!-- exit a message -->
-			<div class="card secondary">
-				<div class="card-divider">
-					<!-- <button class="button secondary small float-right" ng-click="messages.$remove(message)"><img zf-iconic="" data-src="/assets/img/iconic/circle-x.svg" class="iconic-sm"></button> -->
-					{{ message.text }}
-					<a class="float-right" ng-click="messages.$remove(message)"><img zf-iconic="" data-src="/assets/img/iconic/circle-x.svg" class="iconic-sm"></a>
-				</div>
-			</div>
-			<!-- <input ng-model="message.text" ng-change="messages.$save(message)" /> -->
-			<!-- delete message -->
-			<!-- <button class="button secondary small" ng-click="messages.$remove(message)"><img zf-iconic="" data-src="/assets/img/iconic/circle-x.svg" class="iconic-sm"></button> -->
-		</div>
-	</div>
-	<!-- push a new message into the array -->
-	<form ng-submit="addMessage(newMessageText)">
-
-		<div class="grid-content shrink">
-			<div class="small-12 grid-content">
-					<label>
-						Send a message
-						<span class="inline-label">
-							<input type="text" placeholder="Write your message..." ng-model="newMessageText">
-							<!-- <a href="#" class="button">Send &raquo;</a> -->
-							<a ng-click="addMessage(newMessageText)" class="button" type="submit"><img zf-iconic="" data-src="/assets/img/iconic/comment-square.svg" class="iconic-sm"> Send</a>
-
-						</span>
-					</label>
-			</div>
-		</div>
-		<!-- <input name="message" ng-model="newMessageText" /> -->
-		<!-- <button type="submit" class="button">add message</button> -->
-		<!-- <button class="button small" type="submit"><img zf-iconic="" data-src="/assets/img/iconic/comment-square.svg" class="iconic-sm"> add message</button> -->
-
-	</form>
-
-	<!-- anything typed in here is magically saved to Firebase! -->
-	<!-- <input type="text" ng-model="data.text"/> -->
-	<!-- all changes from Firebase magically appear here! -->
-	<!-- <h1>You said: {{ data.text }}</h1> -->
-</div>
-

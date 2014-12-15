@@ -1,0 +1,36 @@
+---
+name: messages
+parent: home
+url: /messages
+---
+<!-- <h1>Welcome to Foundation for Apps!</h1>
+<p class="lead">This is version <strong>1.0.0 Matterhorn</strong>.</p>
+ -->
+
+<div ng-controller="FireCtrl">
+
+	<div class="grid-block">
+		<div class="small-12 grid-block grid-content" ng-repeat="message in messages">
+			<!-- exit a message -->
+			<div class="card secondary">
+				<div class="card-divider">
+					<!-- <button class="button secondary small float-right" ng-click="messages.$remove(message)"><img zf-iconic="" data-src="/assets/img/iconic/circle-x.svg" class="iconic-sm"></button> -->
+					{{ message.text }}
+					<a class="float-right" ng-click="messages.$remove(message)"><img zf-iconic="" data-src="/assets/img/iconic/circle-x.svg" class="iconic-sm"></a>
+				</div>
+			</div>
+			<!-- <input ng-model="message.text" ng-change="messages.$save(message)" /> -->
+			<!-- delete message -->
+			<!-- <button class="button secondary small" ng-click="messages.$remove(message)"><img zf-iconic="" data-src="/assets/img/iconic/circle-x.svg" class="iconic-sm"></button> -->
+		</div>
+	</div>
+
+	<!-- push a new message into the array -->
+
+
+	<!-- anything typed in here is magically saved to Firebase! -->
+	<!-- <input type="text" ng-model="data.text"/> -->
+	<!-- all changes from Firebase magically appear here! -->
+	<!-- <h1>You said: {{ data.text }}</h1> -->
+</div>
+
